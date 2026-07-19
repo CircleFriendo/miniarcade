@@ -52,8 +52,11 @@ vblankwait2:
     ; jsr famistudio_sfx_init
 
 Start:
-    
+    LDA #$00
+    STA $2001
+
     JSR LoadPalettes 
+    JSR DrawMainMenu
 
     LDA #$00
     STA $2005
@@ -103,6 +106,25 @@ PaletteData:
     .db $0F,$3C,$11,$03,$0F,$35,$16,$06,$0F,$39,$3A,$3B,$0F,$3D,$28,$38
 .sprites:
     .db $0F,$36,$25,$15,$0F,$27,$27,$16,$0F,$07,$3D,$13,$0F,$02,$38,$3C 
+
+DrawMainMenu:
+    LDA $2002
+
+    LDA #$21
+    STA $2006
+    LDA #$AE
+    STA $2006
+
+    LDA #$20
+    STA $2007
+    LDA #$21
+    STA $2007
+    LDA #$22
+    STA $2007
+    LDA #$23
+    STA $2007
+    
+    RTS
 
 
     .bank 1
